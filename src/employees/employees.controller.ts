@@ -40,8 +40,7 @@ export class EmployeesController {
   update(
     @Param('id') id: string,
     @Body() updateEmployeeDto: Prisma.EmployeeUpdateInput,
-  ) {
-    console.log(updateEmployeeDto);
+  ) {    
     return this.employeesService.update(+id, updateEmployeeDto);
   }
 
