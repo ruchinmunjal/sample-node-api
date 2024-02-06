@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: samplenest-k8s
+spec:
+  selector:
+    matchLabels:
+      app: samplenest-k8s
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: samplenest-k8s
+    spec:
+      containers:
+        - name: nestjs-k8s
+          image: ruchinmunjal/samplenest-k8s
+          resources:
+            requests:
+              cpu: "100m"
+              memory: 256Mi
+            limits:
+              cpu: "0.2"
+              memory: 256Mi
+          ports:
+            - containerPort: 3000
+
