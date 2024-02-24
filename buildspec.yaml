@@ -1,0 +1,12 @@
+version: 0.2
+phases:
+  prebuild:
+    commands:
+      - aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin 847300303460.dkr.ecr.eu-west-2.amazonaws.com
+  build:
+    commands:
+      - docker build -t sample-nest-app .
+      - docker tag sample-nest-app:latest 847300303460.dkr.ecr.eu-west-2.amazonaws.com/sample-nest-app:latest  
+  post_build:
+    commands:
+      - docker push 847300303460.dkr.ecr.eu-west-2.amazonaws.com/sample-nest-app:latest
